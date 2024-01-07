@@ -1,13 +1,73 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+input {
+  border-radius: 2px !important;
+  border: 1px solid rgb(128, 128, 128, 0.5) !important;
+  height: 3rem !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid rgb(128, 128, 128) !important;
+}
+
+label {
+  font-size: 1.5em !important;
+  color: #000000 !important;
+}
+
+.ant-form-item {
+  margin: 1rem 0 !important;
+}
+
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.normal-text {
+  font-size: 1em;
+}
+
+.card {
+  box-shadow: 0 0 2px gray;
+  border-radius: 0 !important;
+}
+
+.primary-button {
+  background-color: #005555 !important;
+  border-color: #005555 !important;
+  color: #ffffff;
+  height: 3rem;
+  width: 100%;
+  font-size: 1.5em;
+}
+
+.auth-link {
+  text-decoration: underline;
+  font-size: 1.5em;
+}
+
+.auth-link:hover {
+  text-decoration: underline !important;
+}
+
+.auth {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form {
+  width: 25rem;
+}
+
+.auth .card-title {
+  font-size: 1.5em;
+  color: #ffffff;
+  background-color: darkorange;
+  max-width: max-content;
+  padding: 0.5rem 1.5rem;
+  margin-left: -3rem;
+  border-bottom-left-radius: 10px;
 }
