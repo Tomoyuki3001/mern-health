@@ -1,10 +1,21 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const onFinish = (values) => {
-    console.log("Received values of the form:", values);
+  const onFinish = async (values) => {
+    try {
+      const response = await axios.post("/api/user/register", values);
+      if (response.data.success) {
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Something wrong");
+    }
   };
   return (
     <div className="auth">

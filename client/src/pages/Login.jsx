@@ -9,11 +9,8 @@ const Login = () => {
   return (
     <div className="auth">
       <div className="auth-form card p-4">
-        <h1 className="card-title">Nice to meet you</h1>
+        <h1 className="card-title">Welcome Back</h1>
         <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="Name" name="name">
-            <Input placeholder="Name" />
-          </Form.Item>
           <Form.Item label="Email" name="email">
             <Input placeholder="Email" />
           </Form.Item>
@@ -23,8 +20,8 @@ const Login = () => {
           <Button className="primary-button my-4" htmlType="submit">
             REGISTER
           </Button>
-          <Link to="/login" className="auth-link">
-            Click to the Login page
+          <Link to="/register" className="auth-link">
+            Click to the Signup page
           </Link>
         </Form>
       </div>
