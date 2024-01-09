@@ -35,7 +35,7 @@ const Login = () => {
             <Input placeholder="Password" type="password" />
           </Form.Item>
           <Button className="primary-button my-4" htmlType="submit">
-            REGISTER
+            Login
           </Button>
           <Link to="/register" className="auth-link">
             Click to the Signup page
