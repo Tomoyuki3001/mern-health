@@ -4,10 +4,6 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// router.get("/", (req, res) => {
-//   res.send("Hello, this is the root path!");
-// });
-
 router.post("/register", async (req, res) => {
   try {
     const userExists = await User.findOne({ email: req.body.email });
