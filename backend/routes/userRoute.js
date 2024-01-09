@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   res.send("Hello, this is the root path!");
 });
 
-router.post("/register", async (req, res) => {
+router.post("/api/user/register", async (req, res) => {
   try {
     const userExists = await User.findOne({ email: req.body.email });
     if (userExists) {
@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/api/user/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
