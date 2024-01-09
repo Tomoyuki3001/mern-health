@@ -23,7 +23,8 @@ const Login = () => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error("Something is wrong");
+      toast.error("Something is wrong", error);
+      console.log("error", error);
     }
   };
   return (
