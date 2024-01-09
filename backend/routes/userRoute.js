@@ -4,10 +4,6 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// router.get("/", (req, res) => {
-//   res.json("Hello");
-// });
-
 router.get("/", (req, res) => {
   res.send("Hello, this is the root path!");
 });
