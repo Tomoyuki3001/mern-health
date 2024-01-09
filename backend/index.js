@@ -1,15 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const cors = require("cors");
+// const cors = require("cors");
 
-app.use(
-  cors({
-    origin: ["https://mern-health-front-end.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://mern-health-front-end.vercel.app"],
+//     methods: ["POST", "GET"],
+//     credentials: true,
+//   })
+// );
 
 const mongoose = require("mongoose");
 
@@ -25,7 +25,7 @@ connection.on("error", (error) => {
   console.log("Error in MongoDB connection", error);
 });
 
-app.get("https://mern-health.vercel.app", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello, this is the root path!");
 });
 
