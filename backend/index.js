@@ -22,8 +22,4 @@ const userRoute = require("./routes/userRoute");
 app.use("/api/user", userRoute);
 const port = process.env.PORT || 5000;
 
-app.get("/", (res, req) => {
-  res.json("Hello");
-});
-
 app.listen(port, () => console.log(`Node server started at port ${port}`));
