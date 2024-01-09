@@ -8,6 +8,10 @@ const jwt = require("jsonwebtoken");
 //   res.json("Hello");
 // });
 
+router.get("/", (req, res) => {
+  res.send("Hello, this is the root path!");
+});
+
 router.post("/register", async (req, res) => {
   try {
     const userExists = await User.findOne({ email: req.body.email });
