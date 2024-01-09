@@ -3,13 +3,15 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-app.use(
-  cors({
-    origin: ["https://mern-health-front-end.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://mern-health-front-end.vercel.app"],
+//     methods: ["POST", "GET"],
+//     credentials: true,
+//   })
+// );
+
+app.use(cors());
 
 const mongoose = require("mongoose");
 
