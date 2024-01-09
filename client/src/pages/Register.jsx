@@ -11,7 +11,9 @@ const Register = () => {
       const response = await axios.post(
         "https://mern-health.vercel.app/register",
         values,
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       );
       if (response.data.success) {
         toast.success(response.data.message);
