@@ -7,6 +7,7 @@ app.use(
   cors({
     origin: ["https://mern-health-front-end.vercel.app"],
     methods: ["POST", "GET"],
+    credentials: true,
   })
 );
 
