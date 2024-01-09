@@ -10,7 +10,8 @@ const Login = () => {
     try {
       const response = await axios.post(
         "https://mern-health.vercel.app/login",
-        values
+        values,
+        { withCredentials: true }
       );
       if (response.data.success) {
         toast.success(response.data.message);

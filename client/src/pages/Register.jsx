@@ -6,12 +6,12 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
-  axios.defaults.withCredentials = true;
   const onFinish = async (values) => {
     try {
       const response = await axios.post(
         "https://mern-health.vercel.app/register",
-        values
+        values,
+        { withCredentials: true }
       );
       if (response.data.success) {
         toast.success(response.data.message);
