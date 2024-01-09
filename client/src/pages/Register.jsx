@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
   const onFinish = async (values) => {
     try {
       const response = await axios.post(
