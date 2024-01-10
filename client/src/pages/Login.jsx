@@ -8,13 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
-      const response = await axios.post(
-        "https://mern-health.vercel.app/login",
-        values,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post("/api/user/login", values);
       if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.data);
@@ -23,7 +17,7 @@ const Login = () => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error("Something is wrong", error);
+      toast.error("Something is wrong");
       console.log("error", error);
     }
   };
