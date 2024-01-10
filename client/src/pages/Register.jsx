@@ -8,7 +8,10 @@ const Register = () => {
   const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
-      const response = await axios.post("api/user/register", values);
+      const response = await axios.post(
+        "https://mern-health.vercel.app/api/user/register",
+        values
+      );
       if (response.data.success) {
         toast.success(response.data.message);
         toast("Redirecting to the Login page");
