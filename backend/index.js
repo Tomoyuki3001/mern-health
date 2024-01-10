@@ -1,42 +1,16 @@
-const dotenv = require("dotenv");
+require("dotenv").config();
 const express = require("express");
 const app = express();
-const cors = require("cors");
+const dbConfig = require("./config/dbConfig");
+const userRoute = require("./routes/userRoute");
 
-app.use(
-  cors({
-    origin: ["https://mern-health-front-end.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
-
-dotenv.config();
-
-app.use(cors());
-
-const mongoose = require("mongoose");
-
-mongoose.connect(process.env.MONGODB_URI);
-
-const connection = mongoose.connection;
-
-connection.on("connected", () => {
-  console.log("MongoDB is connected");
-});
-
-connection.on("error", (error) => {
-  console.log("Error in MongoDB connection", error);
-});
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello, this is the root path!");
 });
 
-app.use(express.json());
-const userRoute = require("./routes/userRoute");
-
-app.use("/api/users", userRoute);
+app.use("/api/user", userRoute);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Node server started at port ${port}`));
