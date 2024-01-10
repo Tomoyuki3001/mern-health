@@ -3,6 +3,16 @@ const express = require("express");
 const app = express();
 const dbConfig = require("./config/dbConfig");
 const userRoute = require("./routes/userRoute");
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "https://mern-health-front.vercel.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
