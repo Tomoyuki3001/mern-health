@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
-      const response = await axios.post("/api/user/login", values);
+      const response = await axios.post("https://mern-health.vercel.app/api/user/login", values);
       if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.data);
