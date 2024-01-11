@@ -3,15 +3,17 @@ import { Form, Input, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 const Login = () => {
-  const { loading } = useSelector((state) => state.alerts);
-  console.log("loading", loading);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
+      dispatch(showLoading());
       const response = await axios.post("/api/user/login", values);
+      dispatch(hideLoading())
       if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.data);
