@@ -34,3 +34,31 @@
   height: 82vh;
   width: 100%;
 }
+
+.menu {
+  margin-top: 5rem;
+}
+
+.menu-item {
+  margin-top: 30px;
+}
+
+.menu-item a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.3em;
+}
+
+.menu-item i {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5em;
+  margin: 0 15px;
+}
+
+.active-menu-item {
+  color: #ffffff;
+  background-color: #013737;
+  padding: 5px;
+  border-radius: 5px;
+}
