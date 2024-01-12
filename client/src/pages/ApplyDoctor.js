@@ -1,10 +1,43 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { Form, Row, Col, Input, TimePicker, Button } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 function ApplyDoctor() {
-  const onFinish = (values) => {
-    console.log("Submit!", values);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.post(
+        "/api/user/apply-doctor-account",
+        {
+          ...values,
+          userId: user._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(hideLoading());
+      if (response.data.success) {
+        toast.success(response.data.message);
+        toast("Redirecting to the Home page");
+        navigate("/home");
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Something wrong", error);
+    }
   };
   return (
     <Layout>
