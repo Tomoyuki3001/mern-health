@@ -3,14 +3,13 @@
   height: 100vh;
 }
 
-.slidebar {
+.sidebar {
   background-color: #005555;
   border-radius: 5px;
-  box-shadow: 0 0 2px gray;
+  box-shadow: 0 0 2px rgb(155, 145, 145);
   margin-right: 20px;
   min-height: 100%;
   padding: 10px;
-  width: 300px;
 }
 
 .content {
@@ -25,6 +24,9 @@
   margin-bottom: 20px;
   height: 10vh;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .body {
@@ -37,6 +39,7 @@
 
 .menu {
   margin-top: 5rem;
+  padding: 0 1rem;
 }
 
 .menu-item {
@@ -61,4 +64,17 @@
   background-color: #013737;
   padding: 5px;
   border-radius: 5px;
+}
+
+.header-action-icon {
+  font-size: 1.5em;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    padding: 0 0.8rem;
+  }
 }
