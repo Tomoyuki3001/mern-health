@@ -22,7 +22,7 @@ const Home = () => {
   }, []);
   return (
     <Layout>
-      <h1>Home page</h1>
+      <h1 className="page-title">Home page</h1>
     </Layout>
   );
 };

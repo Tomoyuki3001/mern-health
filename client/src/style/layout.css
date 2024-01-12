@@ -14,7 +14,7 @@
   box-shadow: 0 0 2px rgb(155, 145, 145);
   margin-right: 20px;
   min-height: 100%;
-  padding: 10px;
+  padding: 1rem;
 }
 
 .content {
@@ -40,6 +40,7 @@
   box-shadow: 0 0 2px gray;
   height: 82vh;
   width: 100%;
+  padding: 1rem;
 }
 
 .menu {

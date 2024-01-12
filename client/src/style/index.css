@@ -19,9 +19,25 @@ label {
   margin: 1rem 0 !important;
 }
 
-.card-title {
-  font-size: 1.5em;
+.ant-picker input {
+  border: none !important;
+}
+
+.ant-picker {
+  border-radius: 2px !important;
+  border: 1px solid rgb(128, 128, 128, 0.5) !important;
+  height: 3rem !important;
+}
+
+.page-title {
+  font-size: 2em;
   font-weight: bold;
+}
+
+.card-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: rgb(0, 0, 0, 0.6);
 }
 
 .spinner-parent {
@@ -60,6 +76,7 @@ label {
   height: 3rem;
   width: 100%;
   font-size: 1.5em;
+  width: max-content;
 }
 
 .auth-link {
