@@ -14,10 +14,7 @@ const Home = () => {
           },
         }
       );
-      console.log("error", response.error);
-    } catch (error) {
-      console.log("error", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

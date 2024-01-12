@@ -7,6 +7,7 @@ const Layout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
+
   const userMenu = [
     { name: "Home", path: "/", icon: "ri-home-line" },
     { name: "Appointments", path: "/appointments", icon: "ri-file-list-line" },
@@ -16,18 +17,25 @@ const Layout = ({ children }) => {
       icon: "ri-hospital-line",
     },
     { name: "Profile", path: "/profile", icon: "ri-user-line" },
-    { name: "Logout", path: "/logout", icon: "ri-login-box-line" },
   ];
+  const adminMenu = [
+    { name: "Home", path: "/", icon: "ri-home-line" },
+    { name: "Users", path: "/users", icon: "ri-user-line" },
+    { name: "Doctors", path: "/doctors", icon: "ri-hospital-line" },
+    { name: "Profile", path: "/profile", icon: "ri-user-line" },
+  ];
+
+  const renderedMenu = user?.isAdmin ? adminMenu : userMenu;
 
   return (
     <div className="main">
       <div className="d-flex layout">
         <div className="sidebar">
           <div className="sidebar-header">
-            <h1>TM</h1>
+            <h1 className="logo">TM</h1>
           </div>
           <div className="menu">
-            {userMenu.map((menu) => {
+            {renderedMenu.map((menu) => {
               const isActive = location.pathname === menu.path;
               return (
                 <div
@@ -40,15 +48,24 @@ const Layout = ({ children }) => {
                 </div>
               );
             })}
+            <div
+              className="d-flex menu-item"
+              onClick={() => {
+                localStorage.clear();
+              }}
+            >
+              <i className="ri-logout-box-line"></i>
+              {!collapsed && <Link to="/login">Logout</Link>}
+            </div>
           </div>
         </div>
         <div className="content">
           <div className="header">
             {collapsed ? (
-              <ieade
+              <i
                 className="ri-menu-2-line header-action-icon"
                 onClick={() => setCollapsed(false)}
-              ></ieade>
+              ></i>
             ) : (
               <i
                 className="ri-close-line header-action-icon"

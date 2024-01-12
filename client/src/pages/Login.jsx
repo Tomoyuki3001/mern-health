@@ -3,8 +3,9 @@ import { Form, Input, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
+import { setUser } from "../redux/userSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,9 @@ const Login = () => {
     try {
       dispatch(showLoading());
       const response = await axios.post("/api/user/login", values);
-      dispatch(hideLoading())
+      dispatch(hideLoading());
       if (response.data.success) {
+        dispatch(setUser());
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.data);
         navigate("/");
