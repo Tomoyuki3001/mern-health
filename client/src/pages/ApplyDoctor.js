@@ -31,7 +31,7 @@ function ApplyDoctor() {
       if (response.data.success) {
         toast.success(response.data.message);
         toast("Redirecting to the Home page");
-        navigate("/home");
+        navigate("/");
       } else {
         toast.error(response.data.message);
       }

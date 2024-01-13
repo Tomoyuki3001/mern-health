@@ -43,10 +43,10 @@ const Register = () => {
           <Button className="primary-button my-4" htmlType="submit">
             REGISTER
           </Button>
-          <Link to="/login" className="auth-link">
-            Click to the Login page
-          </Link>
         </Form>
+        <Link to="/login" className="auth-link">
+          Click to the Login page
+        </Link>
       </div>
     </div>
   );

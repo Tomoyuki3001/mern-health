@@ -82,6 +82,7 @@ label {
 .auth-link {
   text-decoration: underline;
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 .auth-link:hover {

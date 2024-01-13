@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "../style/layout.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Badge, Avatar } from "antd";
 
 const Layout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const userMenu = [
     { name: "Home", path: "/", icon: "ri-home-line" },
@@ -73,8 +75,18 @@ const Layout = ({ children }) => {
               ></i>
             )}
             <div className="d-flex align-items-center px-4">
-              <i className="ri-notification-2-line header-action-icon mr-2 px-3"></i>
-              <Link className="auth-link" to="/profile">
+              <Badge
+                count={
+                  user?.unseenNotifications
+                    ? user.unseenNotifications.length
+                    : 0
+                }
+                onClick={() => navigate("/notifications")}
+              >
+                <i className="ri-notification-2-line header-action-icon mr-2 px-3"></i>
+              </Badge>
+
+              <Link className="auth-link mx-3" to="/profile">
                 {user?.name}
               </Link>
             </div>

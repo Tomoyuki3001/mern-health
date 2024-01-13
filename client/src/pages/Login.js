@@ -42,10 +42,10 @@ const Login = () => {
           <Button className="primary-button my-4" htmlType="submit">
             Login
           </Button>
-          <Link to="/register" className="auth-link">
-            Click to the Signup page
-          </Link>
         </Form>
+        <Link to="/register" className="auth-link">
+          Click to the Signup page
+        </Link>
       </div>
     </div>
   );
