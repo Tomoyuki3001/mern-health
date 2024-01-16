@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../style/layout.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Badge, Avatar } from "antd";
+import { Badge } from "antd";
 
 const Layout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);

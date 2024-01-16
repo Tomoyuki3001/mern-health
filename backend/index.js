@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const dbConfig = require("./config/dbConfig");
 const userRoute = require("./routes/userRoute");
+const adminRoute = require("./routes/adminRoute");
 const cors = require("cors");
 
 const corsOptions = {
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRoute);
+app.use("/api/admin", adminRoute);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Node server started at port ${port}`));
