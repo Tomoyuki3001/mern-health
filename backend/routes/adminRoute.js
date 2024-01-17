@@ -52,10 +52,10 @@ router.post("/change-doctor-status", authMiddleware, async (req, res) => {
     const unseenNotifications = user.unseenNotifications;
     unseenNotifications.push({
       type: "new-doctor-request-changed",
-      message: `Your doctor account status has been ${status}`,
+      message: `Your doctor account has been ${status}`,
       onClickPath: "/notifications",
-      onClickPath: "/admin/doctors",
     });
+    user.isDoctor = status === "approved" ? true : false;
     await user.save();
 
     res.status(200).send({

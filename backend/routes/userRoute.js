@@ -89,7 +89,7 @@ router.post("/apply-doctor-account", authMiddleware, async (req, res) => {
     const unseenNotifications = adminUser.unseenNotifications;
     unseenNotifications.push({
       type: "new-doctor-request",
-      message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for a doctor account`,
+      message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for the doctor`,
       data: {
         doctorId: newDoctor._id,
         name: newDoctor.lastName + " " + newDoctor.firstName,
