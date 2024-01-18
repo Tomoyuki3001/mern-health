@@ -69,6 +69,12 @@ label {
   border-radius: 0 !important;
 }
 
+.card p {
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
 .primary-button {
   background-color: #005555 !important;
   border-color: #005555 !important;

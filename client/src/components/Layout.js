@@ -31,8 +31,8 @@ const Layout = ({ children }) => {
   ];
   const adminMenu = [
     { name: "Home", path: "/", icon: "ri-home-line" },
-    { name: "Users", path: "/users", icon: "ri-user-line" },
-    { name: "Doctors", path: "/doctors", icon: "ri-hospital-line" },
+    { name: "Users", path: "/admin/users", icon: "ri-user-line" },
+    { name: "Doctors", path: "/admin/doctors", icon: "ri-hospital-line" },
     { name: "Profile", path: "/profile", icon: "ri-user-line" },
   ];
 
