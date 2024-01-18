@@ -80,9 +80,7 @@ label {
   border-color: #005555 !important;
   color: #ffffff;
   height: 3rem;
-  width: 100%;
   font-size: 1.5em;
-  width: max-content;
 }
 
 .auth-link {

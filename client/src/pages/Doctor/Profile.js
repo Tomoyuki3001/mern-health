@@ -53,7 +53,7 @@ const Profile = () => {
       const response = await axios.post(
         "/api/doctor/get-doctor-info-by-user-id",
         {
-          userId: params.doctorId,
+          userId: params.userId,
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -67,9 +67,11 @@ const Profile = () => {
       dispatch(hideLoading());
     }
   };
+
   useEffect(() => {
     getDoctorData();
   }, []);
+
   return (
     <Layout>
       <h1 className="page-title">Doctors Profile</h1>
