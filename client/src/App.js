@@ -65,7 +65,7 @@ function App() {
           }
         />
         <Route
-          path="/users"
+          path="/admin/users"
           element={
             <ProtectedRoute>
               <UsersList />
@@ -73,7 +73,7 @@ function App() {
           }
         />
         <Route
-          path="/doctors"
+          path="/admin/doctors"
           element={
             <ProtectedRoute>
               <DoctorsList />

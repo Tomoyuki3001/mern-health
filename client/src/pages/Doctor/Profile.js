@@ -6,6 +6,7 @@ import { hideLoading, showLoading } from "../../redux/alertsSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
 import DoctorForm from "../../components/DoctorForm";
+import moment from "moment";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,10 @@ const Profile = () => {
         {
           ...values,
           userId: user._id,
+          time: [
+            moment(values.time[0]).format("HH:mm"),
+            moment(values.time[1]).format("HH:mm"),
+          ],
         },
         {
           headers: {
