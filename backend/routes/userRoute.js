@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/userModel");
 const Doctor = require("../models/doctorModel");
+const Appointment = require("../models/appointmentModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middlewares/authMiddleware");
@@ -165,6 +166,29 @@ router.get("/get-all-approved-doctors", authMiddleware, async (req, res) => {
     console.log(error);
     res.status(500).send({
       message: "Error applying doctor accounts",
+      success: false,
+      error,
+    });
+  }
+});
+
+router.post("/book-appointment", authMiddleware, async (req, res) => {
+  try {
+    req.body.status = "pending";
+    const newAppointment = new Appointment(req.body);
+    await newAppointment.save();
+
+    const doctor = await Doctor.findOne({ _id: req.body.doctorId });
+    doctor.unseenNotifications.push({
+      type: "new-appointment-request",
+      message: `A new appointment request has been made by ${req.bosy.userInfo.name}`,
+      onClickPath: "/doctor/appointmens",
+    });
+    await doctor.save();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error booking appointment",
       success: false,
       error,
     });

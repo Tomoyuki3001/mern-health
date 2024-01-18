@@ -15,7 +15,7 @@ const BookAppointment = () => {
   const [doctor, setDoctor] = useState();
   const [isAvailable, setIsAvailable] = useState(false);
   const [date, setDate] = useState(moment());
-  const [selectedTime, setSelectedTime] = useState();
+  const [time, setTime] = useState();
 
   const getDoctorData = async () => {
     try {
@@ -40,14 +40,14 @@ const BookAppointment = () => {
   const bookNow = async () => {
     try {
       const response = await axios.post(
-        "/api/doctor/book-appointment",
+        "/api/user/book-appointment",
         {
           doctorId: params.doctorId,
           userId: user._id,
           doctorInfo: doctor,
           userInfo: user,
           date: date,
-          selectedTime: selectedTime,
+          time: time,
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -87,14 +87,11 @@ const BookAppointment = () => {
                     setDate(moment(value).format("DD-MM-YYYY"))
                   }
                 />
-                <TimePicker.RangePicker
+                <TimePicker
                   format="HH:mm"
                   className="mt-3"
-                  onChange={(values) => {
-                    setSelectedTime([
-                      moment(values[0]).format("HH:mm"),
-                      moment(values[1]).format("HH:mm"),
-                    ]);
+                  onChange={(value) => {
+                    setTime(moment(value).format("HH:mm"));
                   }}
                 />
                 <Button className="primary-button mt-3 full-width-button">
