@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { toDateFix, fromDateFix } from "../redux/dateFix";
 
 const Doctor = (doctor) => {
   let doctorData = doctor.doctor;
   const navigate = useNavigate();
+
   return (
     <div
       className="card p-2 cursor-pointer"
@@ -27,7 +29,7 @@ const Doctor = (doctor) => {
       </p>
       <p>
         <b>Time: </b>
-        {doctorData.time[0]} - {doctorData.time[1]}
+        {fromDateFix(doctorData)} - {toDateFix(doctorData)}
       </p>
     </div>
   );

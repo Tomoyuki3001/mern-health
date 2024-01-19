@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Row, Col, Input, TimePicker, Button } from "antd";
 import moment from "moment";
+import { toDateFix, fromDateFix } from "../redux/dateFix";
 
 const DoctorForm = ({ onFinish, initialValues }) => {
   return (
@@ -10,10 +11,8 @@ const DoctorForm = ({ onFinish, initialValues }) => {
       initialValues={{
         ...initialValues,
         ...(initialValues && {
-          time: [
-            moment(initialValues?.time[0], "HH:mm"),
-            moment(initialValues?.time[1], "HH:mm"),
-          ],
+          timeFrom: moment(fromDateFix(initialValues), "HH:mm"),
+          timeTo: moment(toDateFix(initialValues), "HH:mm"),
         }),
       }}
     >
@@ -108,11 +107,21 @@ const DoctorForm = ({ onFinish, initialValues }) => {
         <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item
             required
-            label="Time"
-            name="time"
+            label="Time From"
+            name="timeFrom"
             rules={[{ required: true }]}
           >
-            <TimePicker.RangePicker format="HH:mm" />
+            <TimePicker format="HH:mm" />
+          </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={24} lg={8}>
+          <Form.Item
+            required
+            label="Time To"
+            name="timeTo"
+            rules={[{ required: true }]}
+          >
+            <TimePicker format="HH:mm" />
           </Form.Item>
         </Col>
       </Row>

@@ -78,7 +78,7 @@ const BookAppointment = () => {
           <Row>
             <Col span={8} sm={24} xs={24} lg={8}>
               <h1 className="normal-text">
-                <b>Time: </b> {doctor.time[0]} - {doctor.time[1]}
+                <b>Time: </b> {doctor.timeFrom} - {doctor.timeTo}
               </h1>
               <div className="d-flex flex-column">
                 <DatePicker

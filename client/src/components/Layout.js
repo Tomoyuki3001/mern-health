@@ -12,7 +12,11 @@ const Layout = ({ children }) => {
 
   const userMenu = [
     { name: "Home", path: "/", icon: "ri-home-line" },
-    { name: "Appointments", path: "/appointments", icon: "ri-file-list-line" },
+    {
+      name: "Appointments",
+      path: "/book-appointment",
+      icon: "ri-file-list-line",
+    },
     {
       name: "Apply for Doctor",
       path: "/apply-doctor",
@@ -22,7 +26,11 @@ const Layout = ({ children }) => {
   ];
   const doctorMenu = [
     { name: "Home", path: "/", icon: "ri-home-line" },
-    { name: "Appointments", path: "/appointments", icon: "ri-file-list-line" },
+    {
+      name: "Appointments",
+      path: "/book-appointment",
+      icon: "ri-file-list-line",
+    },
     {
       name: "Profile",
       path: `/doctor/profile/${user?._id}`,

@@ -88,6 +88,7 @@ router.post("/apply-doctor-account", authMiddleware, async (req, res) => {
     await newDoctor.save();
     const adminUser = await User.findOne({ isAdmin: true });
     const unseenNotifications = adminUser.unseenNotifications;
+    console.log("New doctor", newDoctor);
     unseenNotifications.push({
       type: "new-doctor-request",
       message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for the doctor`,
@@ -178,13 +179,17 @@ router.post("/book-appointment", authMiddleware, async (req, res) => {
     const newAppointment = new Appointment(req.body);
     await newAppointment.save();
 
-    const doctor = await Doctor.findOne({ _id: req.body.doctorId });
-    doctor.unseenNotifications.push({
+    const user = await User.findOne({ _id: req.body.doctorInfo.userId });
+    user.unseenNotifications.push({
       type: "new-appointment-request",
-      message: `A new appointment request has been made by ${req.bosy.userInfo.name}`,
+      message: `A new appointment request has been made by ${req.body.userInfo.name}`,
       onClickPath: "/doctor/appointmens",
     });
-    await doctor.save();
+    await user.save();
+    res.status(200).send({
+      message: "Appointment booked successfully",
+      success: true,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({

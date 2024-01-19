@@ -6,12 +6,13 @@ import { hideLoading, showLoading } from "../redux/alertsSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
 import DoctorForm from "../components/DoctorForm";
-import moment from "moment";
+// import moment from "moment";
 
 function ApplyDoctor() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
+
   const onFinish = async (values) => {
     try {
       dispatch(showLoading());
@@ -20,10 +21,12 @@ function ApplyDoctor() {
         {
           ...values,
           userId: user._id,
-          time: [
-            moment(values.time[0]).format("HH:mm"),
-            moment(values.time[1]).format("HH:mm"),
-          ],
+          // time: [
+          //   moment(values.time[0]).format("HH:mm"),
+          //   moment(values.time[1]).format("HH:mm"),
+          // ],
+          timeFrom: values.timeFrom,
+          timeTo: values.timeTo,
         },
         {
           headers: {

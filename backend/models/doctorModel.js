@@ -38,8 +38,12 @@ const doctorSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    time: {
-      type: Array,
+    timeFrom: {
+      type: String,
+      required: true,
+    },
+    timeTo: {
+      type: String,
       required: true,
     },
     status: {
