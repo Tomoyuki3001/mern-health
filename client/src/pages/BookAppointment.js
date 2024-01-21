@@ -7,15 +7,21 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { Button, Col, DatePicker, Row, TimePicker } from "antd";
 import toast from "react-hot-toast";
+import {
+  toDateFix,
+  fromDateFix,
+  appointmentTime,
+  appointmentDate,
+} from "../redux/dateFix";
 
 const BookAppointment = () => {
   const params = useParams();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [doctor, setDoctor] = useState();
+  const [doctor, setDoctor] = useState(null);
   const [isAvailable, setIsAvailable] = useState(false);
-  const [date, setDate] = useState(moment());
-  const [time, setTime] = useState();
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
   const getDoctorData = async () => {
     try {
@@ -38,6 +44,7 @@ const BookAppointment = () => {
   };
 
   const bookNow = async () => {
+    setIsAvailable(false);
     try {
       const response = await axios.post(
         "/api/user/book-appointment",
@@ -63,6 +70,33 @@ const BookAppointment = () => {
     }
   };
 
+  const checkAvailability = async () => {
+    console.log("time", time);
+    try {
+      const response = await axios.post(
+        "/api/user/check-booking-availability",
+        {
+          doctorId: params.doctorId,
+          date: date,
+          time: time.format("HH:mm"),
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      dispatch(hideLoading());
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setIsAvailable(true);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Error Booking Appointment");
+      dispatch(hideLoading());
+    }
+  };
+
   useEffect(() => {
     getDoctorData();
   }, []);
@@ -78,31 +112,40 @@ const BookAppointment = () => {
           <Row>
             <Col span={8} sm={24} xs={24} lg={8}>
               <h1 className="normal-text">
-                <b>Time: </b> {doctor.timeFrom} - {doctor.timeTo}
+                <b>Time: </b> {fromDateFix(doctor)} - {toDateFix(doctor)}
               </h1>
               <div className="d-flex flex-column">
                 <DatePicker
                   format="DD-MM-YYYY"
-                  onChange={(value) =>
-                    setDate(moment(value).format("DD-MM-YYYY"))
-                  }
+                  onChange={(value) => {
+                    // setDate(moment(value).format("DD-MM-YYYY"))
+                    setIsAvailable(false);
+                    setDate(appointmentDate(value));
+                  }}
                 />
                 <TimePicker
                   format="HH:mm"
                   className="mt-3"
                   onChange={(value) => {
-                    setTime(moment(value).format("HH:mm"));
+                    setIsAvailable(false);
+                    // setTime(moment(value).format("HH:mm"));
+                    setTime(value);
                   }}
                 />
-                <Button className="primary-button mt-3 full-width-button">
-                  Check Availability
-                </Button>
                 <Button
                   className="primary-button mt-3 full-width-button"
-                  onClick={bookNow}
+                  onClick={checkAvailability}
                 >
-                  Book Now
+                  Check Availability
                 </Button>
+                {isAvailable && (
+                  <Button
+                    className="primary-button mt-3 full-width-button"
+                    onClick={bookNow}
+                  >
+                    Book Now
+                  </Button>
+                )}
               </div>
             </Col>
           </Row>

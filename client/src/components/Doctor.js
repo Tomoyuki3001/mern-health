@@ -4,6 +4,7 @@ import { toDateFix, fromDateFix } from "../redux/dateFix";
 
 const Doctor = (doctor) => {
   let doctorData = doctor.doctor;
+  console.log("timeFrom", fromDateFix(doctorData));
   const navigate = useNavigate();
 
   return (

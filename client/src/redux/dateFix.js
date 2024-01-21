@@ -24,4 +24,24 @@ const toDateFix = (value) => {
   return formattedTo;
 };
 
-export { toDateFix, fromDateFix };
+const appointmentTime = (value) => {
+  const dateTo = new Date(value);
+  const formattedTo = new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: false,
+  }).format(dateTo);
+
+  return formattedTo;
+};
+
+const appointmentDate = (value) => {
+  const originalDate = new Date(value);
+  const day = originalDate.getDate().toString().padStart(2, "0");
+  const month = (originalDate.getMonth() + 1).toString().padStart(2, "0");
+  const year = originalDate.getFullYear();
+
+  return `${day}-${month}-${year}`;
+};
+
+export { toDateFix, fromDateFix, appointmentTime, appointmentDate };

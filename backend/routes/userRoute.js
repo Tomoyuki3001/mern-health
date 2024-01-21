@@ -6,6 +6,7 @@ const Appointment = require("../models/appointmentModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middlewares/authMiddleware");
+const moment = require("moment");
 
 router.post("/register", async (req, res) => {
   try {
@@ -176,6 +177,8 @@ router.get("/get-all-approved-doctors", authMiddleware, async (req, res) => {
 router.post("/book-appointment", authMiddleware, async (req, res) => {
   try {
     req.body.status = "pending";
+    // req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
+    // req.body.time = moment(req.body.time, "HH:mm").toISOString();
     const newAppointment = new Appointment(req.body);
     await newAppointment.save();
 
@@ -183,13 +186,47 @@ router.post("/book-appointment", authMiddleware, async (req, res) => {
     user.unseenNotifications.push({
       type: "new-appointment-request",
       message: `A new appointment request has been made by ${req.body.userInfo.name}`,
-      onClickPath: "/doctor/appointmens",
+      onClickPath: "/doctor/appointments",
     });
     await user.save();
     res.status(200).send({
       message: "Appointment booked successfully",
       success: true,
     });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error booking appointment",
+      success: false,
+      error,
+    });
+  }
+});
+router.post("/check-booking-availability", authMiddleware, async (req, res) => {
+  try {
+    const date = req.body.date;
+    const fromTime = moment(req.body.time, "HH:mm").subtract(1, "hours");
+    const toTime = moment(req.body.time, "HH:mm").add(1, "hours");
+    const fromTimeString = fromTime.toISOString();
+    const toTimeString = toTime.toISOString();
+    const doctorId = req.body.doctorId;
+    const appointments = await Appointment.find({
+      doctorId,
+      date,
+      time: { $gte: fromTimeString, $lte: toTimeString },
+    });
+
+    if (appointments.length > 0) {
+      return res.status(200).send({
+        message: "The appointment is not available",
+        success: false,
+      });
+    } else {
+      return res.status(200).send({
+        message: "The appointment is available",
+        success: true,
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send({
