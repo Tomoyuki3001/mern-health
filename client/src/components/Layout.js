@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
     { name: "Home", path: "/", icon: "ri-home-line" },
     {
       name: "Appointments",
-      path: "/appointments",
+      path: "/doctor/appointments",
       icon: "ri-file-list-line",
     },
     {
