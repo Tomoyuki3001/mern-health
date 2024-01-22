@@ -13,7 +13,7 @@ const Doctor = (doctor) => {
       onClick={() => navigate(`/book-appointment/${doctorData._id}`)}
     >
       <h1 className="card-title">
-        {doctorData.firstName} {doctorData.lastName}
+        Dr. {doctorData.firstName} {doctorData.lastName}
       </h1>
       <hr />
       <p>
