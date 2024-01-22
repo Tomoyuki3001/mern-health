@@ -85,6 +85,7 @@ label {
   color: #ffffff;
   height: 3rem;
   font-size: 1.5em;
+  width: 100%;
 }
 
 .auth-link {
