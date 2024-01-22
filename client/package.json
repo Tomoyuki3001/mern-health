@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://mern-health.vercel.app/"
+  "proxy": "http://localhost:5000"
 }
