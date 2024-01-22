@@ -64,6 +64,10 @@ label {
   font-size: 1em;
 }
 
+.role-text {
+  font-size: 0.5em;
+}
+
 .card {
   box-shadow: 0 0 2px gray;
   border-radius: 0 !important;
