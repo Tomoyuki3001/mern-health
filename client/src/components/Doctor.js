@@ -10,11 +10,7 @@ const Doctor = (doctor) => {
   return (
     <div
       className="card p-2 cursor-pointer"
-      onClick={() =>
-        navigate(
-          `https://mern-health.vercel.app/book-appointment/${doctorData._id}`
-        )
-      }
+      onClick={() => navigate(`/book-appointment/${doctorData._id}`)}
     >
       <h1 className="card-title">
         {doctorData.firstName} {doctorData.lastName}
