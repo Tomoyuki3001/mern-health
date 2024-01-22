@@ -99,7 +99,6 @@ router.post("/change-appointment-status", authMiddleware, async (req, res) => {
       message: `Appointment status has been ${status}`,
       onClickPath: "/appointments",
     });
-    user.isDoctor = status === "approved" ? true : false;
     await user.save();
 
     res.status(200).send({

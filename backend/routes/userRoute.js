@@ -176,8 +176,6 @@ router.get("/get-all-approved-doctors", authMiddleware, async (req, res) => {
 router.post("/book-appointment", authMiddleware, async (req, res) => {
   try {
     req.body.status = "pending";
-    // req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
-    // req.body.time = moment(req.body.time, "HH:mm").toISOString();
     const newAppointment = new Appointment(req.body);
     await newAppointment.save();
 
@@ -209,9 +207,6 @@ router.post("/check-booking-availability", authMiddleware, async (req, res) => {
     const fromTimeString = fromTime.toISOString();
     const toTimeString = toTime.toISOString();
     const doctorId = req.body.doctorId;
-    console.log("date", date);
-    console.log("from", fromTimeString);
-    console.log("to", toTimeString);
     const appointments = await Appointment.find({
       doctorId,
       date,
