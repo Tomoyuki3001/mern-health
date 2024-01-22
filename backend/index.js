@@ -8,7 +8,7 @@ const doctorRoute = require("./routes/doctorsRoute");
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "https://mern-health.vercel.app/",
+  origin: "https://mern-health-front.vercel.app",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
