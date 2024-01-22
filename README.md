@@ -1,4 +1,4 @@
-# MERN Full-stach doctor appointments app
+# MERN Full-stack doctor appointments app
 
 Main technologies: React.js, Express.js, Node.js, and MongoDB
 
