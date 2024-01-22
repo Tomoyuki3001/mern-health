@@ -9,14 +9,14 @@ const cors = require("cors");
 
 app.use(express.json());
 
-// const corsOptions = {
-//   origin: "https://mern-health.vercel.app",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true,
-//   optionsSuccessStatus: 204,
-// };
+const corsOptions = {
+  origin: "https://mern-health.vercel.app",
+  // methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  // credentials: true,
+  // optionsSuccessStatus: 204,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Hello, this is the root path!");
