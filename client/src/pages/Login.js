@@ -14,7 +14,7 @@ const Login = () => {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "https://mern-health.vercel.app/api/user/login",
+        "https://mern-health.vercel.app/login",
         values
       );
       dispatch(hideLoading());
