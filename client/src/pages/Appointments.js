@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import axios from "axios";
 import { Table } from "antd";
-import { appointmentTime } from "../redux/dateFix";
+import { appointmentTime, appointmentDate } from "../redux/dateFix";
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -60,7 +60,7 @@ const Appointments = () => {
       dataIndex: "createdAt",
       render: (text, record) => (
         <span className="nomal-text">
-          {record.date} {appointmentTime(record.time)}
+          {appointmentDate(record.date)} / {appointmentTime(record.time)}
         </span>
       ),
     },

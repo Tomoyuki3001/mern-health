@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import axios from "axios";
 import { hideLoading } from "../redux/alertsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
 import { Button, Col, DatePicker, Row, TimePicker } from "antd";
 import toast from "react-hot-toast";
-import {
-  toDateFix,
-  fromDateFix,
-  appointmentTime,
-  appointmentDate,
-} from "../redux/dateFix";
+import { toDateFix, fromDateFix, appointmentDate } from "../redux/dateFix";
 
 const BookAppointment = () => {
   const params = useParams();
@@ -22,6 +16,7 @@ const BookAppointment = () => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const navigate = useNavigate();
 
   const getDoctorData = async () => {
     try {
@@ -63,6 +58,7 @@ const BookAppointment = () => {
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);
+        navigate("/appointments");
       }
     } catch (error) {
       toast.error("Error Booking Appointment");
@@ -106,19 +102,37 @@ const BookAppointment = () => {
       {doctor && (
         <div>
           <h1 className="page-title">
-            {doctor.firstName} {doctor.lastName}
+            Dr. {doctor.firstName} {doctor.lastName}
           </h1>
           <hr />
           <Row>
             <Col span={8} sm={24} xs={24} lg={8}>
+              <p>
+                <b>Phone Number: </b>
+                {doctor.phoneNumber}
+              </p>
+              <p>
+                <b>Address: </b>
+                {doctor.address}
+              </p>
+              <p>
+                <b>Fee per visit: </b>
+                {doctor.feePerConsultation}
+              </p>
+              <p>
+                <b>Website: </b>
+                <a href={doctor.website} target="_blank" rel="noreferrer">
+                  {" "}
+                  {doctor.website}
+                </a>
+              </p>
               <h1 className="normal-text">
                 <b>Time: </b> {fromDateFix(doctor)} - {toDateFix(doctor)}
               </h1>
               <div className="d-flex flex-column">
                 <DatePicker
-                  format="DD-MM-YYYY"
+                  format="MM-DD-YYYY"
                   onChange={(value) => {
-                    // setDate(moment(value).format("DD-MM-YYYY"))
                     setIsAvailable(false);
                     setDate(appointmentDate(value));
                   }}
@@ -128,16 +142,17 @@ const BookAppointment = () => {
                   className="mt-3"
                   onChange={(value) => {
                     setIsAvailable(false);
-                    // setTime(moment(value).format("HH:mm"));
                     setTime(value);
                   }}
                 />
-                <Button
-                  className="primary-button mt-3 full-width-button"
-                  onClick={checkAvailability}
-                >
-                  Check Availability
-                </Button>
+                {!isAvailable && (
+                  <Button
+                    className="primary-button mt-3 full-width-button"
+                    onClick={checkAvailability}
+                  >
+                    Check Availability
+                  </Button>
+                )}
                 {isAvailable && (
                   <Button
                     className="primary-button mt-3 full-width-button"

@@ -68,6 +68,7 @@ router.get(
   async (req, res) => {
     try {
       const doctor = await Doctor.findOne({ userId: req.body.userId });
+      console.log("doctor", doctor);
       const appointments = await Appointment.find({ doctorId: doctor._id });
       res.status(200).send({
         message: "Appointments fetched successfully",

@@ -41,7 +41,7 @@ const appointmentDate = (value) => {
   const month = (originalDate.getMonth() + 1).toString().padStart(2, "0");
   const year = originalDate.getFullYear();
 
-  return `${day}-${month}-${year}`;
+  return `${month}-${day}-${year}`;
 };
 
 export { toDateFix, fromDateFix, appointmentTime, appointmentDate };

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import axios from "axios";
 import { Table } from "antd";
-import { appointmentTime } from "../../redux/dateFix";
+import { appointmentTime, appointmentDate } from "../../redux/dateFix";
 import { toast } from "react-hot-toast";
 
 const DoctorAppointments = () => {
@@ -86,7 +86,7 @@ const DoctorAppointments = () => {
       dataIndex: "createdAt",
       render: (text, record) => (
         <span className="nomal-text">
-          {record.date} {appointmentTime(record.time)}
+          {appointmentDate(record.date)} / {appointmentTime(record.time)}
         </span>
       ),
     },
