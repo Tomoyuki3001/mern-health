@@ -18,7 +18,7 @@ function Notifications() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/api/user/mark-all-notifications",
+        "https://mern-health.vercel.app/api/user/mark-all-notifications",
         {
           userId: user._id,
         },

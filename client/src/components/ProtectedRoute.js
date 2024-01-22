@@ -12,7 +12,7 @@ const ProtectedRoute = (props) => {
   const getUser = async () => {
     try {
       const response = await axios.post(
-        "/api/user/get-user-info-by-id",
+        "https://mern-health.vercel.app/api/user/get-user-info-by-id",
         { token: localStorage.getItem("token") },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

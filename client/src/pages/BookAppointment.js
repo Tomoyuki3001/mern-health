@@ -21,7 +21,7 @@ const BookAppointment = () => {
   const getDoctorData = async () => {
     try {
       const response = await axios.post(
-        "/api/doctor/get-doctor-info-by-id",
+        "https://mern-health.vercel.app/api/doctor/get-doctor-info-by-id",
         {
           doctorId: params.doctorId,
         },
@@ -42,7 +42,7 @@ const BookAppointment = () => {
     setIsAvailable(false);
     try {
       const response = await axios.post(
-        "/api/user/book-appointment",
+        "https://mern-health.vercel.app/api/user/book-appointment",
         {
           doctorId: params.doctorId,
           userId: user._id,
@@ -70,7 +70,7 @@ const BookAppointment = () => {
     console.log("time", time);
     try {
       const response = await axios.post(
-        "/api/user/check-booking-availability",
+        "https://mern-health.vercel.app/api/user/check-booking-availability",
         {
           doctorId: params.doctorId,
           date: date,

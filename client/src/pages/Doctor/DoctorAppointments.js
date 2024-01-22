@@ -15,7 +15,7 @@ const DoctorAppointments = () => {
     try {
       dispatch(showLoading());
       const response = await axios.get(
-        "/api/doctor/get-appointments-by-doctor-id",
+        "https://mern-health.vercel.app/api/doctor/get-appointments-by-doctor-id",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -36,7 +36,7 @@ const DoctorAppointments = () => {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/api/doctor/change-appointment-status",
+        "https://mern-health.vercel.app/api/doctor/change-appointment-status",
         {
           appointmentId: record._id,
           status: status,

@@ -17,14 +17,10 @@ function ApplyDoctor() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/api/user/apply-doctor-account",
+        "https://mern-health.vercel.app/api/user/apply-doctor-account",
         {
           ...values,
           userId: user._id,
-          // time: [
-          //   moment(values.time[0]).format("HH:mm"),
-          //   moment(values.time[1]).format("HH:mm"),
-          // ],
           timeFrom: values.timeFrom,
           timeTo: values.timeTo,
         },

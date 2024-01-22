@@ -14,7 +14,7 @@ const Appointments = () => {
     try {
       dispatch(showLoading());
       const response = await axios.get(
-        "/api/user/get-appointments-by-user-id",
+        "https://mern-health.vercel.app/api/user/get-appointments-by-user-id",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

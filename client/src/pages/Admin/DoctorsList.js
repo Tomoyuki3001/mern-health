@@ -13,11 +13,14 @@ const DoctorsList = () => {
   const getDoctorsData = async () => {
     try {
       dispatch(showLoading());
-      const response = await axios.get("/api/admin/get-all-doctors", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await axios.get(
+        "https://mern-health.vercel.app/api/admin/get-all-doctors",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       dispatch(hideLoading());
       if (response.data.success) {
         setDoctors(response.data.data);
@@ -31,7 +34,7 @@ const DoctorsList = () => {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/api/admin/change-doctor-status",
+        "https://mern-health.vercel.app/api/admin/change-doctor-status",
         { doctorId: record._id, userId: record.userId, status: status },
         {
           headers: {
