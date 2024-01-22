@@ -209,6 +209,9 @@ router.post("/check-booking-availability", authMiddleware, async (req, res) => {
     const fromTimeString = fromTime.toISOString();
     const toTimeString = toTime.toISOString();
     const doctorId = req.body.doctorId;
+    console.log("date", date);
+    console.log("from", fromTimeString);
+    console.log("to", toTimeString);
     const appointments = await Appointment.find({
       doctorId,
       date,
