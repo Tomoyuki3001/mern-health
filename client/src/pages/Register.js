@@ -42,7 +42,10 @@ const Register = () => {
           <Form.Item label="Password" name="password">
             <Input placeholder="Password" type="password" />
           </Form.Item>
-          <Button className="primary-button my-4" htmlType="submit">
+          <Button
+            className="primary-button my-4 full-width-button"
+            htmlType="submit"
+          >
             REGISTER
           </Button>
         </Form>

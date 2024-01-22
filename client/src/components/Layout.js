@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
       <div className="d-flex layout">
         <div className="sidebar">
           <div className="sidebar-header">
-            <h1 className="logo">TM</h1>
+            <h1 className="logo">TM Health</h1>
             <h1 className="role-text">{role}</h1>
           </div>
           <div className="menu">
