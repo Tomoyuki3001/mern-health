@@ -37,10 +37,10 @@ const Login = () => {
         <h1 className="card-title">Welcome Back</h1>
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item label="Email" name="email">
-            <Input placeholder="Email" />
+            <Input placeholder="Email, For demo user@gmail.com" />
           </Form.Item>
           <Form.Item label="Password" name="password">
-            <Input placeholder="Password" type="password" />
+            <Input placeholder="Password For demo PW:1234" type="password" />
           </Form.Item>
           <Button className="primary-button my-4" htmlType="submit">
             Login
