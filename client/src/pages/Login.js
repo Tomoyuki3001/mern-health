@@ -36,11 +36,11 @@ const Login = () => {
       <div className="auth-form card p-4">
         <h1 className="card-title">Welcome Back</h1>
         <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="Email" name="email">
-            <Input placeholder="Email, For demo user@gmail.com" />
+          <Form.Item label="Email (Demo: user@gmail.com)" name="email">
+            <Input placeholder="Email" />
           </Form.Item>
-          <Form.Item label="Password" name="password">
-            <Input placeholder="Password For demo PW:1234" type="password" />
+          <Form.Item label="Password (Demo: 1234)" name="password">
+            <Input placeholder="Password" type="password" />
           </Form.Item>
           <Button className="primary-button my-4" htmlType="submit">
             Login
